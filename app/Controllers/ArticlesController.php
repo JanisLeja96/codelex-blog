@@ -58,6 +58,10 @@ class ArticlesController
 
     public function store()
     {
+        if ($_POST['title'] == '' || $_POST['content'] == '') {
+            echo "<h2 style='color: red;'>Fields cannot be empty</h2>";
+            return $this->create();
+        }
         $articleQuery = query()
             ->insert('articles')
             ->values([
