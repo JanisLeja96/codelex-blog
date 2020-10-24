@@ -68,6 +68,6 @@ class ArticlesController
             ->setParameter(1, $_POST['content']);
 
         $articleQuery->execute();
-        $this->index();
+        header('Location: /');
     }
 }
