@@ -59,7 +59,6 @@ class ArticlesController
 
     public function store()
     {
-        if (isset($_POST)) {
             $articleQuery = query()
                 ->insert('articles')
                 ->values([
@@ -71,6 +70,5 @@ class ArticlesController
 
             $articleQuery->execute();
             $this->index();
-        }
     }
 }
