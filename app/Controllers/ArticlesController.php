@@ -51,4 +51,26 @@ class ArticlesController
 
         return require_once __DIR__  . '/../Views/ArticlesShowView.php';
     }
+
+    public function create()
+    {
+        return require_once __DIR__  . '/../Views/ArticlesCreateView.php';
+    }
+
+    public function store()
+    {
+        if (isset($_POST)) {
+            $articleQuery = query()
+                ->insert('articles')
+                ->values([
+                    'title' => '?',
+                    'content' => '?'
+                ])
+                ->setParameter(0, $_POST['title'])
+                ->setParameter(1, $_POST['content']);
+
+            $articleQuery->execute();
+            $this->index();
+        }
+    }
 }

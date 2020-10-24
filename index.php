@@ -37,6 +37,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', $namespace . 'ArticlesController@index');
 
     $r->addRoute('GET', '/articles', $namespace . 'ArticlesController@index');
+    $r->addRoute('GET', '/articles/create', $namespace . 'ArticlesController@create');
+    $r->addRoute('POST', '/articles', $namespace . 'ArticlesController@store');
     $r->addRoute('GET', '/articles/{id}', $namespace . 'ArticlesController@show');
 });
 
