@@ -19,17 +19,16 @@ class ArticlesController
 
         $articles = [];
 
-        foreach ($articlesQuery as $article)
-        {
+        foreach ($articlesQuery as $article) {
             $articles[] = new Article(
-                (int) $article['id'],
+                (int)$article['id'],
                 $article['title'],
                 $article['content'],
                 $article['created_at']
             );
         }
 
-        return require_once __DIR__  . '/../Views/ArticlesIndexView.php';
+        return require_once __DIR__ . '/../Views/ArticlesIndexView.php';
     }
 
     public function show(array $vars)
@@ -38,37 +37,37 @@ class ArticlesController
             ->select('*')
             ->from('articles')
             ->where('id = :id')
-            ->setParameter('id', (int) $vars['id'])
+            ->setParameter('id', (int)$vars['id'])
             ->execute()
             ->fetchAssociative();
 
         $article = new Article(
-            (int) $articleQuery['id'],
+            (int)$articleQuery['id'],
             $articleQuery['title'],
             $articleQuery['content'],
             $articleQuery['created_at'],
         );
 
-        return require_once __DIR__  . '/../Views/ArticlesShowView.php';
+        return require_once __DIR__ . '/../Views/ArticlesShowView.php';
     }
 
     public function create()
     {
-        return require_once __DIR__  . '/../Views/ArticlesCreateView.php';
+        return require_once __DIR__ . '/../Views/ArticlesCreateView.php';
     }
 
     public function store()
     {
-            $articleQuery = query()
-                ->insert('articles')
-                ->values([
-                    'title' => '?',
-                    'content' => '?'
-                ])
-                ->setParameter(0, $_POST['title'])
-                ->setParameter(1, $_POST['content']);
+        $articleQuery = query()
+            ->insert('articles')
+            ->values([
+                'title' => '?',
+                'content' => '?'
+            ])
+            ->setParameter(0, $_POST['title'])
+            ->setParameter(1, $_POST['content']);
 
-            $articleQuery->execute();
-            $this->index();
+        $articleQuery->execute();
+        $this->index();
     }
 }
