@@ -13,7 +13,7 @@
 
 <?php foreach ($comments as $comment) :?>
 <li>
-    <?php echo "<strong>{$comment->author()}:</strong> {$comment->comment()}";?>
+    <?php echo "<strong>{$comment->author()}:</strong> {$comment->comment()} <small>{$comment->createdAt()}</small>";?>
 </li>
 <?php endforeach;?>
 </ul>
