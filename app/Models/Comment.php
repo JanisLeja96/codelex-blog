@@ -19,7 +19,7 @@ class Comment
     )
     {
         $this->id = $id;
-        $this->article_id = $id;
+        $this->article_id = $article_id;
         $this->author = $author;
         $this->comment = $comment;
         $this->createdAt = $createdAt;
