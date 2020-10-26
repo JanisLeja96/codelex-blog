@@ -30,4 +30,18 @@ class CommentsController
             header("Location: /articles/{$articleId}");
         }
     }
+
+    public function delete(array $vars)
+    {
+        $commentId = $vars['comment_id'];
+        $articleId = $vars['id'];
+
+        $commentQuery = query()
+            ->delete('comments')
+            ->where('id = :comment_id')
+            ->setParameter('comment_id', $commentId)
+            ->execute();
+
+        header('Location: /articles/'.$articleId);
+    }
 }
