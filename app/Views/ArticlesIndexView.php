@@ -1,3 +1,7 @@
+<form method="get" action="/articles/create">
+    <button type="submit">Create New Article</button>
+</form>
+
 <h1>Articles</h1>
 
 <?php foreach ($articles as $article): ?>

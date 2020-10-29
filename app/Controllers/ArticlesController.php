@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Article;
-use App\Models\Comment;
 
 class ArticlesController
 {
@@ -49,25 +48,6 @@ class ArticlesController
             $articleQuery['content'],
             $articleQuery['created_at'],
         );
-
-        $commentsQuery = query()
-            ->select('*')
-            ->from('comments')
-            ->where('article_id = :articleId')
-            ->setParameter('articleId', (int) $vars['id'])
-            ->execute()
-            ->fetchAllAssociative();
-
-        $comments = [];
-        foreach ($commentsQuery as $comment) {
-            $comments[] = new Comment(
-                (int) $comment['id'],
-                (int) $comment['article_id'],
-                $comment['author'],
-                $comment['comment'],
-                $comment['created_at']
-            );
-        }
 
         return require_once __DIR__  . '/../Views/ArticlesShowView.php';
     }
