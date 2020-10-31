@@ -1,6 +1,15 @@
-<form method="get" action="/articles/create">
-    <button type="submit">Create New Article</button>
-</form>
+<?php if (isset($_SESSION['auth_id'])): ?>
+    <form method="post" action="/logout">
+        <button type="submit">Log out</button>
+    </form>
+<?php endif; ?>
+
+<div>
+    <form method="get" action="/articles/create">
+        <button type="submit">Create New Article</button>
+    </form>
+</div>
+
 
 <h1>Articles</h1>
 

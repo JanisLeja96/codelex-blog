@@ -6,6 +6,12 @@
         <b><?php echo $article->createdAt(); ?></b>
     </small>
 </p>
+<p>
+    Tags:
+    <?php foreach ($tags as $tag) :?>
+    <strong><?php echo $tag->tag() . ' '; ?></strong>
+    <?php endforeach;?>
+</p>
 
 <hr>
 <h2>Comments</h2>

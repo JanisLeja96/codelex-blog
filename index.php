@@ -9,6 +9,9 @@ require_once 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+session_start();
+
+
 // TODO Make this look better
 function database(): Connection
 {
@@ -34,9 +37,19 @@ function query(): QueryBuilder
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $namespace = '\App\Controllers\\';
 
+
     $r->addRoute('GET', '/', $namespace . 'ArticlesController@index');
 
+    $r->addRoute('GET', '/login', $namespace . 'LoginController@login');
+    $r->addRoute('POST', '/login', $namespace . 'LoginController@authorize');
+
+    $r->addRoute('POST', '/logout', $namespace . 'LoginController@logout');
+
+    $r->addRoute('GET', '/register', $namespace . 'RegistrationController@registrationForm');
+    $r->addRoute('POST', '/register', $namespace . 'RegistrationController@register');
+
     $r->addRoute('GET', '/articles', $namespace . 'ArticlesController@index');
+
     $r->addRoute('GET', '/articles/create', $namespace . 'ArticlesController@create');
     $r->addRoute('POST', '/articles', $namespace . 'ArticlesController@store');
     $r->addRoute('GET', '/articles/{id}', $namespace . 'ArticlesController@show');
